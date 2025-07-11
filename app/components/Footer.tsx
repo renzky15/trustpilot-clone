@@ -167,15 +167,17 @@ const Footer = () => (
           </div>
         </div>
         {/* Footer Sections */}
-        <div className="flex-1 grid grid-cols-2 md:grid-cols-5 gap-8">
+        <div className="flex-1 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-5 gap-6 sm:gap-8">
           {SECTIONS.map((section) => (
-            <section key={section.title}>
-              <h3 className="text-lg font-bold mb-2 opacity-80">
+            <section key={section.title} className="mb-6 md:mb-0">
+              <h3 className="text-base sm:text-lg font-bold mb-2 opacity-80">
                 {section.title}
               </h3>
               <ul
-                className={`space-y-5 ${
-                  section.isSocial ? "flex flex-col gap-3 space-y-0" : ""
+                className={`space-y-4 sm:space-y-5 ${
+                  section.isSocial
+                    ? "flex flex-row sm:flex-col gap-4 sm:gap-3 space-y-0"
+                    : ""
                 }`}
               >
                 {section.links.map((link, i) => {
@@ -202,8 +204,9 @@ const Footer = () => (
                             alt={
                               typeof link.label === "string" ? link.label : ""
                             }
-                            width={18}
-                            height={18}
+                            width={24}
+                            height={24}
+                            className="w-6 h-6"
                           />
                         </a>
                       </li>
@@ -212,13 +215,13 @@ const Footer = () => (
                     return (
                       <li key={i}>
                         {"isButton" in link && link.isButton ? (
-                          <button className="underline underline-offset-2">
+                          <button className="underline underline-offset-2 text-base sm:text-sm py-2 w-full text-left">
                             {typeof link.label === "string" ? link.label : ""}
                           </button>
                         ) : typeof link.label === "string" ? (
                           <a
                             href={link.href}
-                            className="hover:underline underline-offset-2 text-sm font-semibold"
+                            className="hover:underline underline-offset-2 text-base sm:text-sm font-semibold py-2 w-full block"
                           >
                             {link.label}
                           </a>
@@ -255,7 +258,7 @@ const Footer = () => (
       </div>
       {/* Legal links and copyright */}
       <div className="mt-8  pt-4 flex flex-col md:flex-col md:justify-between items-start gap-5 text-xs opacity-80">
-        <ul className="grid grid-cols-6 gap-5 mb-2 md:mb-0">
+        <ul className="grid grid-cols-3 gap-5 mb-2 md:mb-0 md:grid-cols-6">
           {LEGAL_LINKS.map((link, i) =>
             "isButton" in link && link.isButton ? (
               <li key={i}>

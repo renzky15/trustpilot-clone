@@ -106,9 +106,9 @@ export default function CategoriesSection() {
         </div>
       </div>
       {/* Business CTA Banner */}
-      <div className="relative max-w-6xl mx-auto px-4 bg-pink-200/80 hover:bg-pink-100 rounded-4xl transform transition-colors overflow-hidden">
-        <div className="p-6 flex items-center justify-between">
-          <div>
+      <div className="relative w-full max-w-6xl mx-auto px-2 sm:px-4 bg-pink-200/80 hover:bg-pink-100 rounded-2xl sm:rounded-4xl transform transition-colors overflow-hidden">
+        <div className="p-6 flex flex-col text-center xl:flex-row lg:flex-row sm:flex-col items-center justify-between sm:gap-10 lg:gap-0 lg:text-left">
+          <div className="z-20">
             <h3 className="text-lg font-bold mb-1">
               Sie möchten Ihr Unternehmen voranbringen?
             </h3>
@@ -122,7 +122,7 @@ export default function CategoriesSection() {
           </Button>
         </div>
 
-        <div className="absolute right-14 top-3 bottom-0 flex items-end h-full w-[250px] pointer-events-none z-10">
+        <div className="absolute right-18 top-5 sm:right-14 sm:top-3 xl:right-14 xl:top-3 bottom-0 flex items-end h-full w-[450px] sm:w-[250px] xl:w-[250px] pointer-events-none z-10">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 504 76"

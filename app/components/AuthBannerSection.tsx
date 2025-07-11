@@ -78,28 +78,28 @@ const AuthBannerSection = () => {
   }, []);
 
   return (
-    <section className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-8 py-14 px-10 rounded-3xl bg-[#FEEED6]/60">
+    <section className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6 md:gap-8 py-6 md:py-14 px-3 md:px-10 rounded-xl md:rounded-3xl bg-[#FEEED6]/60">
       {/* Left: Text and Buttons */}
-      <div className="flex-1 min-w-[320px]">
+      <div className="flex-1 min-w-[220px] md:min-w-[320px] w-full">
         <h2 className="hidden md:block text-3xl font-extrabold mb-2">
           Erleichtern Sie Millionen anderer Menschen die Wahl
         </h2>
         <h2 className="md:hidden text-2xl font-bold mb-2">
           Erleichtern Sie Millionen anderer Menschen die Wahl
         </h2>
-        <p className="text-lg text-black mb-6">
+        <p className="text-base md:text-lg text-black mb-6">
           Teilen Sie Ihre Erfahrung auf Trustpilot, wo echte Bewertungen einen
           echten Unterschied machen.
         </p>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 flex-wrap">
           <Button
             variant="ghost"
-            className=" bg-black text-white  py-6 px-6 rounded-full text-base font-bold text-center transition-colors hover:text-black hover:bg-[#eddbc1]"
+            className="bg-black text-white py-4 md:py-6 px-4 md:px-6 rounded-full text-base font-bold text-center transition-colors hover:text-black hover:bg-[#eddbc1]"
           >
             Einloggen oder anmelden
           </Button>
-          <div className="border-l border-black w-0.5 h-10 "></div>
-          <div className="flex gap-2">
+          <div className="border-l border-black w-0.5 h-10 hidden md:block"></div>
+          <div className="flex gap-2 md:mt-0">
             {OAUTH.map((oauth) => (
               <a
                 key={oauth.alt}
@@ -120,11 +120,11 @@ const AuthBannerSection = () => {
         </div>
       </div>
       {/* Right: Flipping Images */}
-      <div className="flex-1 flex flex-row gap-4 h-72 w-full max-w-6/12">
+      <div className="flex-1 flex flex-row md:flex-row gap-4 h-auto md:h-72 w-full max-w-full md:max-w-6/12 overflow-x-auto md:overflow-x-visible flex-nowrap md:flex-nowrap">
         {AUTH_IMAGES.map((pair, idx) => (
           <div
             key={idx}
-            className="w-40 h-full rounded-xl overflow-hidden shadow-lg perspective-[800px]"
+            className="w-40 md:w-40 h-48 md:h-full rounded-xl overflow-hidden shadow-lg perspective-[800px] flex-shrink-0"
           >
             <div
               className={`relative w-full h-full transition-transform duration-1000 [transform-style:preserve-3d] ${

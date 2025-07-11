@@ -9,9 +9,9 @@ import TrustpilotAppBanner from "./components/TrustpilotAppBanner";
 
 export default function TrustpilotHomepage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gray-50 sm:overflow-hidden md:overflow-hidden">
       {/* Header */}
-      <main className="relative overflow-hidden">
+      <main className="relative sm:overflow-hidden md:overflow-hidden">
         <HeroSection />
         <Separator />
 
