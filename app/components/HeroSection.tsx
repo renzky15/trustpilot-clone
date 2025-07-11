@@ -47,7 +47,7 @@ export default function HeroSection() {
             />
             <button
               name="search-button"
-              className="ml-2 flex items-center justify-center bg-[#3C56BD] hover:bg-[#F2F4FE] text-white rounded-full w-12 h-12 p-0 mx-2"
+              className="ml-2 flex items-center justify-center bg-[#3C56BD] hover:bg-[#F2F4FE] text-white hover:text-black rounded-full w-12 h-12 p-0 mx-2"
               aria-label="Unternehmen oder Kategorie suchen "
               type="submit"
               data-search-button-button="true"

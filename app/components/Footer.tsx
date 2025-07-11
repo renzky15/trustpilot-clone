@@ -211,7 +211,7 @@ const Footer = () => (
                   } else {
                     return (
                       <li key={i}>
-                        {link?.isButton ? (
+                        {"isButton" in link && link.isButton ? (
                           <button className="underline underline-offset-2">
                             {typeof link.label === "string" ? link.label : ""}
                           </button>
