@@ -72,9 +72,7 @@ const SearchDropdown: React.FC<SearchDropdownProps> = ({ visible }) => {
         {sampleCompanies.map((c, i) => (
           <div
             key={i}
-            className={`flex items-center justify-between px-2 py-3 sm:py-2 rounded-lg hover:bg-gray-100 cursor-pointer ${
-              i === 2 ? "bg-[#F2F4FE]" : ""
-            }`}
+            className={`flex items-center justify-between px-2 py-3 sm:py-2 rounded-lg hover:bg-gray-100 cursor-pointer`}
           >
             <div className="flex items-center gap-3">
               <Image
