@@ -7,6 +7,9 @@ interface FooterLink {
   icon?: string;
   isButton?: boolean;
 }
+interface FooterProps {
+  bgColor: string;
+}
 
 const SECTIONS = [
   {
@@ -150,8 +153,8 @@ const LEGAL_LINKS: FooterLink[] = [
   },
 ];
 
-const Footer = () => (
-  <footer className="bg-black text-white py-15" role="contentinfo">
+const Footer: React.FC<FooterProps> = ({ bgColor }) => (
+  <footer className={`${bgColor} text-white py-15" role="contentinfo`}>
     <div className="max-w-6xl mx-auto px-4">
       <div className="flex flex-col md:flex-col md:justify-between gap-8">
         {/* Logo and Country Selector */}

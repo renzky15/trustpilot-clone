@@ -6,11 +6,14 @@ import TopCompaniesSection from "./components/TopCompaniesSection";
 import ValuePropositionSection from "./components/ValuePropositionSection";
 import RecentReviewsSection from "./components/RecentReviewsSection";
 import TrustpilotAppBanner from "./components/TrustpilotAppBanner";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
 
 export default function TrustpilotHomepage() {
   return (
     <div className="min-h-screen bg-gray-50 sm:overflow-hidden md:overflow-hidden">
       {/* Header */}
+      <Header bgColor="bg-[#1C1B1B]" />
       <main className="relative sm:overflow-hidden md:overflow-hidden">
         <HeroSection />
         <Separator />
@@ -71,6 +74,7 @@ export default function TrustpilotHomepage() {
         <RecentReviewsSection />
         <TrustpilotAppBanner />
       </main>
+      <Footer bgColor="bg-[#1C1B1B]" />
     </div>
   );
 }

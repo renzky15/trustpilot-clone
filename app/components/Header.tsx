@@ -5,6 +5,7 @@ import Image from "next/image";
 
 interface HeaderProps {
   showSearch?: boolean;
+  bgColor: string;
 }
 
 const navLinks = [
@@ -14,11 +15,13 @@ const navLinks = [
   { href: "#", label: "Einloggen" },
 ];
 
-const Header: React.FC<HeaderProps> = ({ showSearch }) => {
+const Header: React.FC<HeaderProps> = ({ showSearch, bgColor }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="w-full bg-[#1C1B1B] text-[#EBE9EC] px-4 py-3 font-trustpilot-reg text-sm font-semibold sticky top-0 z-50">
+    <div
+      className={`w-full ${bgColor} text-[#EBE9EC] px-4 py-3 font-trustpilot-reg text-sm font-semibold sticky top-0 z-50`}
+    >
       <div className="max-w-6xl w-full mx-auto flex flex-col md:flex-row md:items-center md:justify-between gap-3 md:gap-0">
         <div className="flex flex-col md:flex-row md:items-center md:space-x-2 w-full">
           <div className="flex items-center justify-between w-full md:w-auto">
