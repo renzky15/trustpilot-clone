@@ -14,7 +14,7 @@ type BlogSectionProps = {
 };
 
 const BlogSection: React.FC<BlogSectionProps> = ({ category, articles }) => (
-  <section className="py-12 border-b border-gray-300">
+  <section className="py-12 border-b border-gray-300 last:border-0">
     <div className="flex justify-between items-center pb-9">
       <h2 className="text-[32px] font-bold">{category}</h2>
       <button className="font-medium text-[#1A66FF]">Weitere Artikel</button>

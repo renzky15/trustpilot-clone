@@ -154,7 +154,7 @@ const LEGAL_LINKS: FooterLink[] = [
 ];
 
 const Footer: React.FC<FooterProps> = ({ bgColor }) => (
-  <footer className={`${bgColor} text-white py-15" role="contentinfo`}>
+  <footer className={`${bgColor} text-white py-14`} role="contentinfo">
     <div className="max-w-6xl mx-auto px-4">
       <div className="flex flex-col md:flex-col md:justify-between gap-8">
         {/* Logo and Country Selector */}
