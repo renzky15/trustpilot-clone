@@ -3,7 +3,6 @@ import BlogSection from "@/components/BlogSection";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import React, { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import Header from "@/components/Header";
 
 const blogData = [
   {
