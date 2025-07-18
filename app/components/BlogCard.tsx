@@ -18,22 +18,22 @@ const BlogCard: React.FC<BlogCardProps> = ({
   date,
   link,
 }) => (
-  <div className="bg-white overflow-hidden flex flex-col h-full">
+  <div className="bg-white overflow-hidden flex flex-col sm:flex-row lg:flex-col h-full border border-gray-200 rounded-lg">
     <a
       href={link}
-      className="block relative w-full"
+      className="block relative w-full sm:w-[260px] lg:w-full flex-shrink-0"
       style={{ aspectRatio: "1/1" }}
     >
       <Image
         src={image}
         alt={title}
         fill
-        sizes="(min-width: 992px) 15vw, 25vw"
-        className="object-cover"
+        sizes="(min-width: 992px) 260px, 100vw"
+        className="object-cover rounded-t-lg sm:rounded-l-lg sm:rounded-t-none lg:rounded-t-lg lg:rounded-l-none"
         priority={false}
       />
     </a>
-    <div className="py-4 flex flex-col flex-1">
+    <div className="py-4 px-4 flex flex-col justify-start flex-1">
       <a
         href={categoryLink || "#"}
         className="text-blue-600 text-sm font-medium mb-2 hover:underline"

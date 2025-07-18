@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import Image from "next/image";
 
@@ -18,6 +18,17 @@ const navLinks = [
 const Header: React.FC<HeaderProps> = ({ showSearch, bgColor }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
 
+  // Automatically close mobile nav on resize to desktop
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 768) {
+        setMobileOpen(false);
+      }
+    };
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
   return (
     <div
       className={`w-full ${bgColor} text-[#EBE9EC] px-4 py-3 font-trustpilot-reg text-sm font-semibold sticky top-0 z-50`}
@@ -35,23 +46,42 @@ const Header: React.FC<HeaderProps> = ({ showSearch, bgColor }) => {
             {/* Mobile menu button */}
             <button
               className="md:hidden p-2 ml-2 rounded focus:outline-none focus:ring-2 focus:ring-white"
-              aria-label="Menü öffnen"
-              onClick={() => setMobileOpen(true)}
+              aria-label={mobileOpen ? "Menü schließen" : "Menü öffnen"}
+              onClick={() => setMobileOpen((open) => !open)}
             >
-              <svg
-                width="28"
-                height="28"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
+              {mobileOpen ? (
+                // Close (X) icon
+                <svg
+                  width="28"
+                  height="28"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M6 18L18 6M6 6l12 12"
+                  />
+                </svg>
+              ) : (
+                // Hamburger icon
+                <svg
+                  width="28"
+                  height="28"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M4 6h16M4 12h16M4 18h16"
+                  />
+                </svg>
+              )}
             </button>
           </div>
           {showSearch && (
@@ -78,49 +108,93 @@ const Header: React.FC<HeaderProps> = ({ showSearch, bgColor }) => {
           </Button>
         </nav>
       </div>
-      {/* Mobile nav overlay */}
-      {mobileOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-90 flex flex-col items-center justify-center md:hidden">
-          <button
-            className="absolute top-6 right-6 p-2 rounded focus:outline-none focus:ring-2 focus:ring-white"
-            aria-label="Menü schließen"
-            onClick={() => setMobileOpen(false)}
-          >
-            <svg
-              width="28"
-              height="28"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-          </button>
-          <nav className="flex flex-col items-center gap-8 mt-8">
-            {navLinks.map((link) => (
-              <a
-                key={link.label}
-                href={link.href}
-                className="text-white text-xl font-bold hover:underline"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </a>
-            ))}
-            <Button
-              className="bg-[#9CC6FF] hover:bg-[#3B4769] text-black font-bold px-8 py-4 rounded-full hover:text-white mt-4"
-              onClick={() => setMobileOpen(false)}
-            >
+      {/* Mobile nav overlay and panel */}
+      <div>
+        {/* Overlay */}
+        <div
+          className={`fixed left-0 right-0 top-14 z-40 bg-[#1c1c1c]/30 bg-opacity-70 transition-opacity duration-300 ${
+            mobileOpen
+              ? "opacity-100 pointer-events-auto"
+              : "opacity-0 pointer-events-none"
+          }`}
+          onClick={() => setMobileOpen(false)}
+          aria-hidden="true"
+        />
+        {/* Slide-in panel */}
+        <div
+          className={`fixed top-17 right-0 h-[calc(100vh-56px)] w-80 max-w-full bg-[#1c1c1c] z-20 shadow-lg flex flex-col transition-transform duration-300 ease-in-out ${
+            mobileOpen ? "translate-x-0" : "translate-x-full"
+          }`}
+        >
+          {/* Top bar with search */}
+          <div className="flex items-center justify-between px-4 py-4 border-b border-[#23242a]">
+            <Button className="w-full bg-transparent border border-[#3B4769] text-[#9CC6FF] font-bold py-2 rounded-full hover:bg-[#1a1a1a] hover:text-white mr-2">
               Für Unternehmen
             </Button>
-          </nav>
+          </div>
+          {/* Search icon and nav links */}
+          <div className="flex flex-col px-4 pt-4">
+            <div className="flex items-center mb-6">
+              <svg
+                width="20"
+                height="20"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+                className="text-[#9CC6FF] mr-2"
+              >
+                <circle
+                  cx="11"
+                  cy="11"
+                  r="8"
+                  stroke="#9CC6FF"
+                  strokeWidth="2"
+                />
+                <line
+                  x1="21"
+                  y1="21"
+                  x2="16.65"
+                  y2="16.65"
+                  stroke="#9CC6FF"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                />
+              </svg>
+              <input
+                type="search"
+                placeholder="Suchen …"
+                className="flex-1 px-3 py-2 rounded-lg bg-[#23242a] text-white placeholder-[#9CC6FF] focus:outline-none border border-[#23242a]"
+              />
+            </div>
+            <nav className="flex flex-col gap-2 w-full">
+              <a
+                href="#"
+                className="text-[#9CC6FF] font-bold py-2 flex items-center border-b border-[#23242a] hover:bg-[#23242a] transition-colors"
+              >
+                Einloggen <span className="ml-auto">→</span>
+              </a>
+              <a
+                href="#"
+                className="text-white font-bold py-2 border-b border-[#23242a] hover:bg-[#23242a] transition-colors"
+              >
+                Bewertung abgeben
+              </a>
+              <a
+                href="#"
+                className="text-white font-bold py-2 border-b border-[#23242a] hover:bg-[#23242a] transition-colors"
+              >
+                Kategorien
+              </a>
+              <a
+                href="#"
+                className="text-white font-bold py-2 hover:bg-[#23242a] transition-colors"
+              >
+                Blog
+              </a>
+            </nav>
+          </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };
